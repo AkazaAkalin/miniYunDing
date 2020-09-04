@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="tabContainer">
+    <view class="tabItem {{select == 0 ? 'select': ''}}" bindtap="selectTab" data-index='0'>
+      <view class="title">阵容推荐</view>
+    </view>
+    <view class="tabItem {{select == 1 ? 'select': ''}}" bindtap="selectTab" data-index='1'>
+      <view class="title">实战装备</view>
+    </view>
+    <view class="tabItem {{select == 2 ? 'select': ''}}" bindtap="selectTab" data-index='2'>
+      <view class="title">阵容模拟器</view>
+    </view>
+  </view>
+  <view class="content">
+    <view wx:if = '{{select == 0}}'></view>
+    <view wx:if= '{{select == 1}}'></view>
+    <view wx:if= '{{select == 2}}'>
+      <view class="checkbox">
+        <view class="fetterbox">
+          元素： 
+          <picker bindchange="pickFetter" range="{{fetters}}">
+            <view class="border">
+              <view class="currentFetter">{{currentFetter}} </view>
+            </view>
+          </picker>
+        </view>
+        <view class="characterbox">
+          职业： 
+          <picker bindchange="pickCharacter" range="{{characters}}">
+            <view class="border">
+              <view class="currentFetterCharacter">{{currentFetterCharacter}}</view>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="rolecontent">
+        <view class="roleBox">
+            <block wx:for="{{roles}}" wx:key="key">
+                <view class="roleBoxItem" bindtap="addRoles" data-item='{{item}}'>
+                  <!-- <image class="roleItemIcon" src="{{item.icon}}"/> -->
+                  {{item.name}}
+                </view>
+            </block>
+        </view>
+      </view>
+      <view class="myroles">
+        <view class="myrolesTitle">我选择的英雄：</view>
+        <view class="roleBox myrolesbox">
+          <block wx:for='{{myroles}}' wx:key="index">
+            <view class="roleBoxItem" bindtap="deleteRoles" data-item='{{item}}'>
+              {{item.chineseName}}
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="myteam">
+        <view class="myteamTitle">我的羁绊：</view>
+        <view class="myFetters">
+          <block wx:for="{{teamFetters}}" wx:key='index'>
+            {{index}} : {{item}}
+          </block>
+        </view>
+      </view>
+      <view class="myteamDesc">
+        <view class="myteamTitle">羁绊效果：</view>
+          <view class=""> </view>
+      </view>
+    </view>
+  </view>
+</view>

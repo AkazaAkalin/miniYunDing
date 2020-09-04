@@ -1,0 +1,70 @@
+/**index.wxss**/
+.tabContainer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 2rpx solid #989898;
+  border-bottom:  2rpx solid #989898;
+  height: 80rpx;
+  align-items: center;
+}
+.tabItem {
+  font-size: 32rpx;
+  width: 50rpx;
+  height: 50rpx;
+  white-space: nowrap;
+  text-align: center;
+}
+.title {
+  position: relative;
+  left: -50rpx;
+}
+.select {
+  border-bottom: 4rpx solid #FF9900;
+}
+.rolecontent {
+  margin: 0 auto;
+}
+.roleBox {
+  max-height: 480rpx;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.roleBoxItem {
+  height: 110rpx;
+  width: 110rpx;
+  background-color: pink;
+  margin: 10rpx 20rpx;
+  border-radius: 4rpx;
+}
+.roleItemIcon {
+  width: 100%;
+  height: 100%;
+}
+.checkbox {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.fetterbox, .characterbox {
+  display: flex;
+}
+.border {
+  width: 200rpx;
+  text-align: center;
+  border: 1rpx solid #999999;
+  box-sizing: border-box;
+}
+.currentFetter, .currentFetterCharacter {
+  
+}
+.myrolesTitle,.myteamTitle {
+  margin-left: 20rpx;
+}
+.myrolesbox, .myFetters {
+  min-height: 100rpx;
+  background-color: #f3f3f3;
+  margin: 20rpx auto;
+}
