@@ -10,9 +10,11 @@ Page({
     currentFetter: '全部',
     currentFetterCharacter: '全部',
     myroles: [],
-    teamFetters: []
+    teamFetters: [],
   },
   onLoad: function () {
+    let toast = this.selectComponent('#toast')
+    toast.show()
   },
   selectTab(e) {
     let select = e.currentTarget.dataset.index
@@ -44,7 +46,6 @@ Page({
       deleteindex = index
     })
     myroles.splice(deleteindex, 1)
-    // console.log(myroles)
     this.handleFetters(myroles)
     this.setData({ myroles })
   },
@@ -130,9 +131,20 @@ Page({
       }
       return total
     },{}) 
-    // console.log(fetters, characters)
-    let teamFetters = {...fetters,...characters}
-    console.log(teamFetters)
+    let teamFetters = { ...fetters, ...characters }
+    // console.log(teamFetters)
+    // this.handleTeamDesc(teamFetters)
     this.setData({ teamFetters })
   },
+  // handleTeamDesc(myroles) {
+    // let result = []
+    // Object.getOwnPropertyNames(myroles).forEach(item => {
+    //   console.log(item, myroles[item])
+    // })
+  // },
+  showFetter(e) {
+    let {index, item} = e.currentTarget.dataset
+    let toast = this.selectComponent('#toast')
+    toast.show()
+  }
 })

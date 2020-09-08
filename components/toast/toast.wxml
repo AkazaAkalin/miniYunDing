@@ -1,0 +1,18 @@
+<!--components/toast.wxml-->
+<!-- <template name="toast">
+  <view bindtap="show">点我弹出</view>
+  <view class="toast" wx:if='{{toastData.showToast}}'>
+    {{toastData.text}}
+    <view bindtap="close">点我关闭</view>
+  </view>
+</template> -->
+<slot></slot>
+<view class="toast" wx:if='{{toastData.showToast}}'>
+  <view class="container">
+    <view class="title">羁绊效果</view>
+    <view class="desc">bababababbaababallalaaaaaaaaaaaaaaaalal</view>
+  </view>
+  <view bindtap="close" class="closeIconBox">
+    <image src="./close.png" class="closeIcon"/>
+  </view>
+</view>

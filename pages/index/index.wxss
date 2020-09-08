@@ -61,10 +61,31 @@
   
 }
 .myrolesTitle,.myteamTitle {
-  margin-left: 20rpx;
+  margin-top: 20rpx;
+  text-align: center;
 }
-.myrolesbox, .myFetters {
+.myrolesbox, .myFetters, .myteamDescBox {
   min-height: 100rpx;
   background-color: #f3f3f3;
   margin: 20rpx auto;
+}
+.roleBoxDesc {
+  width: 100%;
+  text-align: center;
+  line-height: 200rpx;
+}
+.myFetters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.myFetterItem {
+  font-size: 32rpx;
+  margin: 10rpx 0;
+  width: 33%;
+  text-align: center;
+  white-space: nowrap;
+}
+.myteamDescBox {
+
 }

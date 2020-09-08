@@ -1,4 +1,3 @@
-<!--index.wxml-->
 <view class="container">
   <view class="tabContainer">
     <view class="tabItem {{select == 0 ? 'select': ''}}" bindtap="selectTab" data-index='0'>
@@ -44,27 +43,38 @@
         </view>
       </view>
       <view class="myroles">
-        <view class="myrolesTitle">我选择的英雄：</view>
+        <view class="myrolesTitle">我选择的英雄</view>
         <view class="roleBox myrolesbox">
-          <block wx:for='{{myroles}}' wx:key="index">
+          <block wx:for='{{myroles}}' wx:key="index" wx:if="{{myroles}}">
             <view class="roleBoxItem" bindtap="deleteRoles" data-item='{{item}}'>
               {{item.chineseName}}
             </view>
           </block>
+          <view wx:if='{{!myroles.length}}'  class="roleBoxDesc">
+            <view>选择上方的英雄，加入到我的阵容</view>
+          </view>
         </view>
       </view>
       <view class="myteam">
-        <view class="myteamTitle">我的羁绊：</view>
+        <view class="myteamTitle">我的羁绊</view>
         <view class="myFetters">
           <block wx:for="{{teamFetters}}" wx:key='index'>
-            {{index}} : {{item}}
+            <view class="myFetterItem" bindtap="showFetter" 
+            data-index='{{index}}' data-item='{{item}}'>
+              {{index}} : {{item}}
+            </view>
           </block>
         </view>
       </view>
-      <view class="myteamDesc">
-        <view class="myteamTitle">羁绊效果：</view>
-          <view class=""> </view>
-      </view>
+      <!-- <view class="myteamDesc">
+        <view class="myteamTitle">羁绊效果</view>
+          <view class="myteamDescBox"> </view>
+      </view> -->
     </view>
+  </view>
+  <view>
+    <toast id='toast'>
+      <!-- <view>indexindeindex</view> -->
+    </toast>
   </view>
 </view>
