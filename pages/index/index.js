@@ -13,8 +13,6 @@ Page({
     teamFetters: [],
   },
   onLoad: function () {
-    let toast = this.selectComponent('#toast')
-    toast.show()
   },
   selectTab(e) {
     let select = e.currentTarget.dataset.index
@@ -65,6 +63,7 @@ Page({
         return item.zhiye == this.data.currentFetterCharacter
       })
     }
+    console.log(currentFetter, roles)
     this.setData({ currentFetter, roles })
   },
   pickCharacter(e) {
@@ -146,5 +145,6 @@ Page({
     let {index, item} = e.currentTarget.dataset
     let toast = this.selectComponent('#toast')
     toast.show()
+    this.setData({toastFetter:index, toastCount: item})
   }
 })

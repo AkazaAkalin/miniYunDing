@@ -11,8 +11,11 @@
     </view>
   </view>
   <view class="content">
-    <view wx:if = '{{select == 0}}'></view>
-    <view wx:if= '{{select == 1}}'></view>
+    <view wx:if = '{{select == 0}}'>
+      <view class="underMaking">施工中...</view></view>
+    <view wx:if= '{{select == 1}}'>
+      <view class="underMaking">施工中...</view>
+    </view>
     <view wx:if= '{{select == 2}}'>
       <view class="checkbox">
         <view class="fetterbox">
@@ -66,15 +69,9 @@
           </block>
         </view>
       </view>
-      <!-- <view class="myteamDesc">
-        <view class="myteamTitle">羁绊效果</view>
-          <view class="myteamDescBox"> </view>
-      </view> -->
     </view>
   </view>
   <view>
-    <toast id='toast'>
-      <!-- <view>indexindeindex</view> -->
-    </toast>
+    <toast id='toast' toastFetter='{{toastFetter}}' toastCount="{{toastCount}}"></toast>
   </view>
 </view>
