@@ -39,8 +39,12 @@
         <view class="roleBox">
             <block wx:for="{{roles}}" wx:key="key">
                 <view class="roleBoxItem" bindtap="addRoles" data-item='{{item}}'>
-                  <!-- <image class="roleItemIcon" src="{{item.icon}}"/> -->
-                  {{item.name}}
+                    <view class="roleItemIconBox">
+                      <image class="roleItemIcon" src="{{item.icon}}"/>
+                    </view>
+                  <view class="addIconBox">
+                    <image class="addIcon" src="./add.png"/>
+                  </view>
                 </view>
             </block>
         </view>
@@ -50,7 +54,15 @@
         <view class="roleBox myrolesbox">
           <block wx:for='{{myroles}}' wx:key="index" wx:if="{{myroles}}">
             <view class="roleBoxItem" bindtap="deleteRoles" data-item='{{item}}'>
-              {{item.chineseName}}
+              <view class="roleItemIconBox {{item.isFate? 'fateRole' : ''}}">
+                <image class="roleItemIcon" src="{{item.icon}}"/>
+              </view>
+              <view class="fateRoleIconBox" wx:if='{{item.isFate}}'>
+                <image class="fateRoleIcon" src="./fateRole.png"/>
+              </view>
+              <view class="deleteIconBox">
+                <image class="deleteIcon" src="./delete.png"/>
+              </view>
             </view>
           </block>
           <view wx:if='{{!myroles.length}}'  class="roleBoxDesc">
@@ -58,6 +70,7 @@
           </view>
         </view>
       </view>
+      <view class="faterolesTitle" bindtap="showFatedialog" wx:if='{{myroles.length}}'>设置天选之人</view>
       <view class="myteam">
         <view class="myteamTitle">我的羁绊</view>
         <view class="myFetters">
@@ -72,6 +85,7 @@
     </view>
   </view>
   <view>
-    <toast id='toast' toastFetter='{{toastFetter}}' toastCount="{{toastCount}}"></toast>
+    <toast id='toast' toastFetter='{{toastFetter}}' toastCount="{{toastCount}}"/>
   </view>
+  <fate id='fate' roles="{{myroles}}" bind:setFate='setFate'/>
 </view>

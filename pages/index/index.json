@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "toast": "../../components/toast/toast"
+    "toast": "../../components/toast/toast",
+    "fate": "../../components/fate/fate"
   }
 }

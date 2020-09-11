@@ -1,0 +1,20 @@
+<view class="container" wx:if='{{showFate}}'>
+  <view class="dialogBox">
+    <view class="title">设置一个英雄为天选之人</view>
+    <view class="roleBox">
+     <block wx:for='{{roles}}' wx:key="index">
+        <view class="roleBoxItem" bindtap="setFate" data-item='{{item}}'>
+          <view class="roleItemIconBox {{item.isFate? 'fateRole' : ''}}">
+            <image class="roleItemIcon" src="{{item.icon}}"/>
+          </view>
+          <view class="fateRoleIconBox" wx:if='{{item.isFate}}'>
+            <image class="fateRoleIcon" src="./fateRole.png"/>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="close" bindtap="hide">
+      <image class="closeIcon" src="../fate/close.png"></image>
+    </view>
+  </view>
+</view>

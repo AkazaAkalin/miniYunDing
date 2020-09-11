@@ -1,0 +1,57 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(102, 102, 102, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dialogBox {
+  width: 100%;
+  min-height: 400rpx;
+  background-color: #989898;
+  position: relative;
+}
+.title {
+  text-align: center;
+  font-size: 36rpx;
+  color: #FF9900;
+  margin: 20rpx auto;
+}
+.roleBox {
+  max-height: 300rpx;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+} 
+.roleBoxItem {
+  height: 110rpx;
+  width: 110rpx;
+  margin: 10rpx 20rpx;
+  border-radius: 4rpx;
+  overflow: hidden;
+  position: relative;
+}
+.roleItemIconBox {
+  height: 110rpx;
+  width: 110rpx;
+}
+.roleItemIcon {
+  width: 100%;
+  height: 100%;
+}
+.close {
+  height: 36rpx;
+  width: 36rpx;
+  position: absolute;
+  top: 24rpx;
+  right: 0;
+}
+.closeIcon {
+  height: 100%;
+  width: 100%;
+}

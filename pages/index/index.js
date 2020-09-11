@@ -20,17 +20,22 @@ Page({
   },
   addRoles(e) {
     let role = e.currentTarget.dataset.item
-    let random = Math.random()
-    role = {...role, random}
     let myroles = this.data.myroles
     let count = 0 
     myroles.forEach(item => { item.name === role.name && count++ })
     if(count < 2 && myroles.length < 10) {
       myroles.push(role)
+      myroles.forEach((item, index) => { item.index = index })
     } else if (myroles.length >= 10) {
-      console.log('只能选择10个英雄哦')
+      wx.showToast({
+        title: '只能选择10个英雄哦',
+        icon: 'none'
+      })
     } else {
-      console.log('同英雄只能选择两个')
+      wx.showToast({
+        title: '同英雄只能选择两个',
+        icon: 'none'
+      })
     }
     this.handleFetters(myroles)
     this.setData({ myroles })
@@ -38,9 +43,9 @@ Page({
   deleteRoles(e) {
     let role = e.currentTarget.dataset.item
     let myroles = this.data.myroles
-    let deleteindex = ''
+    let deleteindex = role.index
     myroles.forEach((item, index) => {
-      if(role.random == item.random)
+      if(role.index == item.index)
       deleteindex = index
     })
     myroles.splice(deleteindex, 1)
@@ -63,7 +68,6 @@ Page({
         return item.zhiye == this.data.currentFetterCharacter
       })
     }
-    console.log(currentFetter, roles)
     this.setData({ currentFetter, roles })
   },
   pickCharacter(e) {
@@ -85,66 +89,113 @@ Page({
     this.setData({ currentFetterCharacter, roles })
   },
   handleFetters(myroles) {
-    var uniqueRoles = [],  obj = {},  index = 0;
+    var uniqueRoles = [],  obj = {}
     myroles.forEach(val => {
         if (obj.hasOwnProperty(val.name)) {
-          uniqueRoles[obj[val.name]].random = uniqueRoles[obj[val.name]].random + ',' + val.timeStamp
+          obj[val.name]++
         } else {
-            obj[val.name] = index ++
-            uniqueRoles.push({...val})
+          obj[val.name] = 1
+          uniqueRoles.push({...val})
         }
     })
     let fetters = uniqueRoles.reduce((total, item) => {
-      if (item.jiban.length < 2) {
-        if(item.jiban in total) {
-          total[item.jiban] ++
+      if(item.isFate) {
+        if (item.jiban.length < 2) {
+          if(item.jiban in total) {
+            total[item.jiban] += 2
+          } else {
+            total[item.jiban] = 2
+          }
         } else {
-          total[item.jiban] = 1
+          item.jiban.forEach(item => {
+            if(item in total) {
+              total[item] += 2
+            } else {
+              total[item] = 2
+            }
+          })
         }
       } else {
-        item.jiban.forEach(item => {
-          if(item in total) {
-            total[item] ++
+        if (item.jiban.length < 2) {
+          if(item.jiban in total) {
+            total[item.jiban] ++
           } else {
-            total[item] = 1
+            total[item.jiban] = 1
           }
-        })
+        } else {
+          item.jiban.forEach(item => {
+            if(item in total) {
+              total[item] ++
+            } else {
+              total[item] = 1
+            }
+          })
+        }
       }
       return total
     },{}) 
     let characters =  uniqueRoles.reduce((total, item) => {
-      if (item.zhiye.length < 2) {
-        if(item.zhiye in total) {
-          total[item.zhiye] ++
+      if(item.isFate) {
+        if (item.zhiye.length < 2) {
+          if(item.zhiye in total) {
+            total[item.zhiye] += 2
+          } else {
+            total[item.zhiye] = 2
+          }
         } else {
-          total[item.zhiye] = 1
+          item.zhiye.forEach(item => {
+            if(item in total) {
+              total[item] += 2
+            } else {
+              total[item] = 2
+            }
+          })
         }
       } else {
-        item.zhiye.forEach(item => {
-          if(item in total) {
-            total[item] ++
+        if (item.zhiye.length < 2) {
+          if(item.zhiye in total) {
+            total[item.zhiye] ++
           } else {
-            total[item] = 1
+            total[item.zhiye] = 1
           }
-        })
+        } else {
+          item.zhiye.forEach(item => {
+            if(item in total) {
+              total[item] ++
+            } else {
+              total[item] = 1
+            }
+          })
+        }
       }
       return total
     },{}) 
     let teamFetters = { ...fetters, ...characters }
-    // console.log(teamFetters)
-    // this.handleTeamDesc(teamFetters)
     this.setData({ teamFetters })
   },
-  // handleTeamDesc(myroles) {
-    // let result = []
-    // Object.getOwnPropertyNames(myroles).forEach(item => {
-    //   console.log(item, myroles[item])
-    // })
-  // },
   showFetter(e) {
     let {index, item} = e.currentTarget.dataset
     let toast = this.selectComponent('#toast')
     toast.show()
     this.setData({toastFetter:index, toastCount: item})
+  },
+  showFatedialog() {
+    this.selectComponent('#fate').show()
+  },
+  setFate(e) {
+    console.log(e.detail)
+    let index = e.detail.index
+    let myroles = this.data.myroles
+    myroles.forEach(item => {
+      if(item.index == index) {
+        item.isFate = true
+        
+      } else {
+        item.isFate = false
+      }
+    })
+    this.handleFetters(myroles)
+    this.setData({myroles})
+    this.selectComponent('#fate').hide()
   }
 })
